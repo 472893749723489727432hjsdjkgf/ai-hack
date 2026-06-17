@@ -13,8 +13,20 @@ services:
     restart: always
     networks:
       - postgres-network
-
+  migrate:
+    image: migrate/migrate
+    volumes:
+      - $PWD/migrations:/migrations
+    command:
+      - -path=/migrations
+      - -database=$MIGRATE_URL
+      - up
+    depends_on:
+      - postgres-service
+    networks:
+      - postgres-network
 
 networks:
   postgres-network:
+    name: postgres-network
     driver: bridge
