@@ -3,9 +3,9 @@ package domain
 
 type User struct{
 	ID					int
-	UserName			string
+	UserName				string
 	Email				string
-	Password			string
+	Password				string
 }
 
 type Credentials struct{
